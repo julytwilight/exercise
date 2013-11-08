@@ -8,16 +8,19 @@ def compress(file, limit):
     img = Image.open(file)  
     width, height = img.size  
 
-    if width ]]> height:  
+    if width > height:  
         rate = float(height) / limit  
     else:  
         rate = float(width) / limit  
 
-    n_width = width / rate  
-    n_height = height / rate  
+    n_width = int(width / rate)
+    n_height = int(height / rate)
+    # print n_width
+    # print n_height
+    # exit()
 
     img = img.resize((n_width,n_height))  
-    if width ]]> height:  
+    if width > height:  
         shave = (n_width-limit) / 2  
         n = img.crop((shave, 0, limit+shave, limit))  
     else:  
